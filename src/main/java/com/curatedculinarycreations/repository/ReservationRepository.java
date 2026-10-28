@@ -1,6 +1,7 @@
 package com.curatedculinarycreations.repository;
 
 import com.curatedculinarycreations.domain.Reservation;
+import com.curatedculinarycreations.domain.ReservationStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,5 +11,11 @@ public interface ReservationRepository
 
     List<Reservation> findByCustomerIdOrderByCreatedAtDesc(
             Long customerId
+    );
+
+    List<Reservation> findAllByOrderByCreatedAtDesc();
+
+    List<Reservation> findByStatusOrderByCreatedAtDesc(
+            ReservationStatus status
     );
 }

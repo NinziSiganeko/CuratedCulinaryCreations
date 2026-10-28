@@ -76,6 +76,8 @@ public class SecurityConfig {
                                 "/api/health",
                                 "/api/auth/**"
                         ).permitAll()
+                        .requestMatchers("/api/reservations/admin/**")
+                        .hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(

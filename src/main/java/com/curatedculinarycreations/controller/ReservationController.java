@@ -1,5 +1,6 @@
 package com.curatedculinarycreations.controller;
 
+import com.curatedculinarycreations.dto.AdminReservationResponse;
 import com.curatedculinarycreations.dto.CreateReservationRequest;
 import com.curatedculinarycreations.dto.ReservationResponse;
 import com.curatedculinarycreations.service.ReservationService;
@@ -22,6 +23,8 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
+    // CUSTOMER ENDPOINTS
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ReservationResponse createReservation(
@@ -39,5 +42,31 @@ public class ReservationController {
             Authentication authentication
     ) {
         return reservationService.getMyReservations(authentication);
+    }
+
+    // ADMIN ENDPOINTS
+
+    @GetMapping("/admin")
+    public List<AdminReservationResponse> getAllReservations() {
+        return reservationService.getAllReservations();
+    }
+
+    @GetMapping("/admin/pending")
+    public List<AdminReservationResponse> getPendingReservations() {
+        return reservationService.getPendingReservations();
+    }
+
+    @PostMapping("/admin/{id}/confirm")
+    public AdminReservationResponse confirmReservation(
+            @PathVariable Long id
+    ) {
+        return reservationService.confirmReservation(id);
+    }
+
+    @PostMapping("/admin/{id}/decline")
+    public AdminReservationResponse declineReservation(
+            @PathVariable Long id
+    ) {
+        return reservationService.declineReservation(id);
     }
 }
