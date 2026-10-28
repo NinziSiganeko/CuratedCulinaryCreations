@@ -1,5 +1,5 @@
 
-package com.curatedculinarycreat.config;
+package com.curatedculinarycreations.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
